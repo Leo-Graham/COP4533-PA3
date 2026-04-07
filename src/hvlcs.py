@@ -1,6 +1,17 @@
+import time
+import os
+
 def solve():
+    # Begin timer
+    start = time.perf_counter()
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(base_dir, "..", "data")
+    input_path  = os.path.join(data_dir, "example.in")
+    output_path = os.path.join(data_dir, "example.out")
+
     # Reading and parsing input
-    with open("example.in", "r") as f:
+    with open(input_path, "r") as f:
         data = f.read().split('\n')
     
     idx = 0
@@ -40,9 +51,13 @@ def solve():
             j -= 1
     result.reverse()
     
-    #Output the result
-    with open("example.out", "w") as f:
+    # Output the result
+    with open(output_path, "w") as f:
         f.write(f"{dp[n][m]}\n")
         f.write(''.join(result) + "\n")
+    
+    # End timer for problem 1
+    end = time.perf_counter()
+    print(f"Runtime: {end - start:.6f} seconds")
 
 solve()
